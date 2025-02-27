@@ -1,0 +1,117 @@
+
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Build output
+dist/
+build/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+.env.production
+
+# Parcel-bundler cache
+.cache/
+
+# SvelteKit build artifacts
+.svelte-kit/
+
+# Next.js build output
+.next/
+
+# Nuxt.js build output
+.nuxt/
+
+# Gatsby files
+.cache/
+public/
+
+# Vuepress build output
+.vuepress/dist/
+
+# Hugo build output
+/public/
+
+# Jekyll build output
+_site/
+
+# Temporary files created by JetBrains IDEs
+.idea/
+
+# Temporary files created by Visual Studio Code
+.vscode/
+
+# Temporary files created by Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files created by Emacs
+*~
+\#*\#
+
+# Temporary files created by Vim
+*.swp
+*.swo
+*.swn
+
+# Temporary files created by Eclipse
+.project
+.classpath
+.cproject
+.settings/
+
+# Temporary files created by IntelliJ IDEA
+*.iml
+.idea/
+
+# Temporary files created by NetBeans
+nbproject/
