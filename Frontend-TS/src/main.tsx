@@ -10,7 +10,7 @@ import Home from "./components/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
 
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <Router>
             <Navbar />

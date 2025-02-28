@@ -4,8 +4,8 @@ require('dotenv').config();
 const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
 
 // Firebase REST API endpoints
-const SIGNUP_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`;
-const LOGIN_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`;
+const SIGNUP_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+FIREBASE_API_KEY;
+const LOGIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+FIREBASE_API_KEY;
 
 // Signup with Firebase REST API
 const firebaseSignup = async (email, password) => {
