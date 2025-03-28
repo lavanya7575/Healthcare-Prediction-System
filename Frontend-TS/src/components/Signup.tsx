@@ -3,7 +3,6 @@
 // @ts-expect-error
 import { signup } from '../api/auth.js';
 import {Link, useNavigate} from "react-router-dom";
-import '../styles/Auth.css';
 import { useState } from 'react';
 
 const Signup = () => {

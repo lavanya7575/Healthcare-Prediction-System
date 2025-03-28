@@ -116,6 +116,60 @@ def predict():
 # Chatbot API
 
 
+@app.route('/predict/api', methods=['POST'])
+def predictApi():
+    try:
+        data = request.json
+        symptoms = data.get("symptoms")
+
+        if not data:
+            return jsonify({"error": "No symptoms provided"}), 400
+
+        # Prepare the input prompt for the Gemini API
+        symptoms_str = ", ".join(symptoms)
+        prompt = f"Given the symptoms: {symptoms}, predict the most likely disease. Give the answer in the expected format \
+            only the Name of the most likely disease, \
+            Description of the disease in brief only with key words \
+            Precautions to be taken in brief with key words comma separated,\
+            Medications to be taken in single line comma separated (Add 'doctor's advise preferred' at the last in brackets),\
+            Diet to be followed in brief with key words comma separated,\
+            Workout to be performed in brief with key words comma separated. \
+            give only in semicolon(;) separated and in a single line."
+
+        # Use the Gemini API to generate a response
+        response = model.generate_content([prompt])
+        print(response.text)
+        # Parse the response from Gemini API
+        predicted_disease = response.text.split(';')
+
+        # Fetch additional details about the disease
+        # desc = description[description["Disease"] == predicted_disease]["Description"].values
+        # pre = precautions[precautions["Disease"] == predicted_disease].values.tolist()
+        # med = medications[medications["Disease"] == predicted_disease]["Medication"].values.tolist()
+        # diet = diets[diets["Disease"] == predicted_disease]["Diet"].values.tolist()
+        # wrkout = workout[workout["disease"] == predicted_disease]["workout"].values.tolist()
+
+        desc = predicted_disease[1]
+        pre = predicted_disease[2]
+        med = predicted_disease[3]
+        diet = predicted_disease[4]
+        wrkout = predicted_disease[5]
+
+        # Build the response object
+        response_data = {
+            "disease": predicted_disease[0],
+            "description": desc,
+            "precautions": pre,
+            "medications": med,
+            "diet": diet,
+            "workout": wrkout,
+        }
+        return jsonify(response_data)
+    except Exception as e:
+        logging.exception("Error in prediction")
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
@@ -125,7 +179,22 @@ def chat():
         if not user_message:
             return jsonify({"error": "No message provided"}), 400
 
-        prompt = f"User: {user_message}\nAI:"  # Basic chat formatting
+        system_instruction = """You are a healthcare chatbot. 
+
+1. For any greetings (e.g., hello, hi, good morning), reply: "Hello, welcome to Medibot. Please mention your symptom."
+
+2. If the user directly mentions a disease or problem (e.g., "I have a headache," "I think I have the flu"), provide a brief, one-liner description of the disease, its common causes, and basic precautions.  Keep the response minimalist (one line if possible).  Do not ask questions in this case.
+
+3. For symptoms (e.g., "I have a runny nose and cough"), reply: "Okay, I understand you're experiencing <symptom>. I wish to ask you some questions." Then, ask 5 yes/no questions *one by one, separately*, based on the symptoms. After the user answers the questions, provide a possible diagnosis.
+
+4. All replies should be simple and minimalist (one line if possible).
+
+5. if you find any spelling mistake (e.g., alzimers), reply "Do you mean alzheimer"
+
+6. After the 5 questions asked to the user provide a 2 line description of the disease, causes , precautions and medications.
+
+7. If the input is something other than a greeting, symptom, or disease, reply: "Sorry, I don't understand." """
+        prompt = f"{system_instruction} User: {user_message}\nAI:"  # Basic chat formatting
         response = model.generate_content([prompt])
         return jsonify({"bot_reply": response.text})
     except Exception as e:

@@ -23,7 +23,8 @@ async function signInWithGoogle() {
         const token = credential.accessToken; //Optional
         const user = result.user;
         console.log("Signed in with Google:", user);
-
+        console.log("User UID:", result.user.uid); // Get UID
+        localStorage.setItem('uid', result.user.uid);
         // Redirect to your desired page after successful login
         window.location.href = "/home";
         return user; //example

@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
-import './App.css';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import {signInWithGoogle} from './api/googleAuth';
 function App() {
-    const getUser = () => {
-        console.log(signInWithGoogle());
+    const getUser = async () => {
+        try {
+            await signInWithGoogle();
+        } catch (error) {
+            console.error("Google Sign-In Error:", error);
+        }
     };
     return (
         <div>

@@ -2,9 +2,8 @@
 // @ts-expect-error
 import { login } from '../api/auth.js';
 import {Link, useNavigate} from 'react-router-dom';
-import '../styles/Auth.css';
 import { useState } from 'react';
-import '../App.css';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
