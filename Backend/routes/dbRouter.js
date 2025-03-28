@@ -20,7 +20,8 @@ router.post('/details', async (req, res) => {
 
     try {
         const result = req.body;
-        console.log(result[0])
+        console.log(result)
+        res.status(201).json({ message: 'Signup successful', result });
     } catch (error) {
         console.error('Error saving user details:', error);
         res.status(500).json({ error: 'Failed to save user details' });

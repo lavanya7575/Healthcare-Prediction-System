@@ -1,6 +1,10 @@
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import { signup } from '../api/auth.js';
+import {Link, useNavigate} from "react-router-dom";
+import '../styles/Auth.css';
 import { useState } from 'react';
-import { signup } from '../api/auth';
-import {useNavigate} from "react-router-dom";
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -8,7 +12,7 @@ const Signup = () => {
     const navigate = useNavigate()
 
 
-    const handleSignup = async (e) => {
+    const handleSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
             const response = await signup(email, password);
@@ -22,28 +26,36 @@ const Signup = () => {
             navigate("/userDetails");
         } catch (error) {
             console.error('Signup failed:', error);
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             alert(`Signup failed: ${error.error}`);
         }
     };
 
     return (
-        <form onSubmit={handleSignup}>
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                required
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-            />
-            <button type="submit">Signup</button>
-        </form>
+        <div className="auth-container">
+            <h1>Sign Up</h1>
+            <form onSubmit={handleSignup}>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>
+                Don't have an account? <Link to="/login">Sign In</Link>
+            </p>
+        </div>
     );
 };
 

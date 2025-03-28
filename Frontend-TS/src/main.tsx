@@ -1,8 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import './App.css';
 import App from './App.jsx'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
 import UserDetails from "./components/UserDetails.jsx";
@@ -11,6 +13,7 @@ import Navbar from "./components/Navbar.jsx";
 
 
 createRoot(document.getElementById('root')!).render(
+    <div className="sparkles">
     <StrictMode>
         <Router>
             <Navbar />
@@ -23,4 +26,5 @@ createRoot(document.getElementById('root')!).render(
             </Routes>
         </Router>
     </StrictMode>
+    </div>
 )

@@ -23,6 +23,6 @@ export const login = async (email, password) => {
     }
 };
 
-
+export { signup, login };
 
 

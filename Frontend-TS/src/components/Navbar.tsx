@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -10,7 +10,7 @@ const Navbar = () => {
     // Handle logout
     const handleLogout = () => {
         localStorage.removeItem('uid'); // Clear the UID from localStorage
-        navigate('/login'); // Redirect to the login page
+        navigate('/'); // Redirect to the login page
     };
 
     return (
@@ -35,6 +35,8 @@ const Navbar = () => {
 
 // Styles
 const styles = {
+
+
     navbar: {
         display: 'flex',
         justifyContent: 'space-between',

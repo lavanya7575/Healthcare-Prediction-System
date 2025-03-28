@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const UserDetails = () => {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         uid: '', // Firebase UID (will be fetched from localStorage)
@@ -23,7 +26,7 @@ const UserDetails = () => {
             [name]: value,
         });
     };
-
+    
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,13 +41,16 @@ const UserDetails = () => {
 
         // Add UID to form data
         const dataToSend = { ...formData, uid };
-
         try {
+            console.log("trying to send data to backend");
             // Send data to backend
             const response = await axios.post('http://localhost:5003/api/user/details', dataToSend);
             console.log('User details saved:', response.data);
             alert('User details saved successfully!');
+            navigate('/home'); // Redirect to dashboard after successful save
+            
         } catch (error) {
+            console.log("error saving")
             console.error('Error saving user details:', error);
             alert('Failed to save user details. Please try again.');
         }

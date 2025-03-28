@@ -1,13 +1,17 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import { login } from '../api/auth.js';
+import {Link, useNavigate} from 'react-router-dom';
+import '../styles/Auth.css';
 import { useState } from 'react';
-import { login } from '../api/auth';
-import { useNavigate } from 'react-router-dom';
+import '../App.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleLogin = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
             const response = await login(email, password);
@@ -25,23 +29,29 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleLogin}>
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                required
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-            />
-            <button type="submit">Login</button>
-        </form>
+        <div className="auth-container">
+            <h1>Sign In</h1>
+            <form onSubmit={handleLogin}>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Sign In</button>
+            </form>
+            <p>
+                Already have an account? <Link to="/signup">Sign Up</Link>
+            </p>
+        </div>
     );
 };
 
