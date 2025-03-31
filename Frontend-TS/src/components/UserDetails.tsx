@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import '../styles/user.css';
 const UserDetails = () => {
 
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const UserDetails = () => {
     });
 
     // Handle form input changes
-    const handleChange = (e) => {
+    const handleChange = (e: { target: { name: any; value: any; }; }) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
@@ -57,7 +57,16 @@ const UserDetails = () => {
     };
 
     return (
-        <div>
+        <section className="heroo">
+        <div className="sparkles"></div>
+  <div className="background-icons">
+    <div className="icon icon1">💊</div>
+    <div className="icon icon2">🩺</div>
+    <div className="icon icon3">❤️</div>
+    <div className="icon icon4">💉</div>
+  </div>
+  <div className="user">
+        <div className="user-details-container">
             <h1>User Details Form</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -133,6 +142,8 @@ const UserDetails = () => {
                 <button type="submit">Save Details</button>
             </form>
         </div>
+        </div>
+        </section>
     );
 };
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import "./App.css";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import {signInWithGoogle} from './api/googleAuth';

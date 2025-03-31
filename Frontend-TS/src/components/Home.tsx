@@ -180,9 +180,9 @@ const App = () => {
       {/* Right Side: Chatbot */}
       <div style={{ flex: 1, padding: "20px" }}>
         <h1>Chatbot</h1>
-        <div style={{ height: "80%", overflowY: "auto", border: "1px solid #ccc", padding: "10px" }}>
+        <div >
           {messages.map((msg, index) => (
-            <div key={index} style={{ textAlign: msg.sender === "user" ? "right" : "left" }}>
+            <div key={index} >
               <p><strong>{msg.sender === "user" ? "You" : "Bot"}:</strong> {msg.text}</p>
             </div>
           ))}
@@ -195,7 +195,7 @@ const App = () => {
             onChange={(e) => setChatMessage(e.target.value)}
             placeholder="Type your message..."
             disabled={isLoading}
-            style={{ width: "50%", marginRight: "10px" }}
+            style={{ width: "80%", marginRight: "10px" }}
           />
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send"}

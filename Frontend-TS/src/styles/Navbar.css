@@ -1,60 +1,48 @@
-/* Navbar container */
+/* Navbar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px; /* Updated padding */
-    background-color: #333;
-    color: #fff;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #FFB347, #FFDAB9); /* Light orange gradient */
+    color: #5A4033; /* Darker brown for contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #E67300; /* Orange accent */
 }
 
-/* Left section of the navbar */
-.navbar .left {
-    display: flex;
-    gap: 20px;
-}
-
-/* Right section of the navbar */
-.navbar .right {
+/* Left and Right Sections */
+.navbar-left, .navbar-right {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-/* Navbar links */
-.navbar .link {
-    color: #fff;
+/* Navbar Links */
+.navbar a {
+    color: #5A4033; /* Dark brown for contrast */
     text-decoration: none;
     font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.navbar .link:hover {
-    text-decoration: underline;
+.navbar a:hover {
+    color: #E67300; /* Dark orange for hover effect */
 }
 
-/* Navbar button */
-.navbar .button {
+/* Logout Button */
+.navbar button {
     background-color: transparent;
-    border: none;
-    color: #fff;
+    border: 2px solid #E67300;
+    color: #E67300;
     cursor: pointer;
     font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
-.navbar .button:hover {
-    opacity: 0.8;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .navbar .left,
-    .navbar .right {
-        flex-direction: column;
-        gap: 10px;
-    }
+.navbar button:hover {
+    background: #E67300;
+    color: #fff;
 }

@@ -169,37 +169,56 @@ def predictApi():
         logging.exception("Error in prediction")
         return jsonify({"error": str(e)}), 500
 
-
+chat_histories = {}
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
-        data = request.json
-        user_message = data.get("message", "")
+        user_id = request.json.get('userId')
+        user_message = request.json.get('message')
 
-        if not user_message:
-            return jsonify({"error": "No message provided"}), 400
+        if user_id not in chat_histories:
+            chat_histories[user_id] = []
 
-        system_instruction = """You are a healthcare chatbot. 
+        chat_history = chat_histories[user_id]
+
+        system_instruction = """You are a healthcare chatbot.
 
 1. For any greetings (e.g., hello, hi, good morning), reply: "Hello, welcome to Medibot. Please mention your symptom."
 
-2. If the user directly mentions a disease or problem (e.g., "I have a headache," "I think I have the flu"), provide a brief, one-liner description of the disease, its common causes, and basic precautions.  Keep the response minimalist (one line if possible).  Do not ask questions in this case.
+2. If the user directly mentions a disease or problem (e.g., "I have a headache," "I think I have the flu"), provide a brief, one-liner description of the disease, its common causes, and basic precautions. Keep the response minimalist (one line if possible). Do not ask questions in this case.
 
 3. For symptoms (e.g., "I have a runny nose and cough"), reply: "Okay, I understand you're experiencing <symptom>. I wish to ask you some questions." Then, ask 5 yes/no questions *one by one, separately*, based on the symptoms. After the user answers the questions, provide a possible diagnosis.
 
 4. All replies should be simple and minimalist (one line if possible).
 
-5. if you find any spelling mistake (e.g., alzimers), reply "Do you mean alzheimer"
+5. If you find any spelling mistake (e.g., alzimers), reply "Do you mean alzheimer?"
 
-6. After the 5 questions asked to the user provide a 2 line description of the disease, causes , precautions and medications.
+6. After the 5 questions asked to the user, provide a 2-line description of the disease, causes, precautions, and medications.
 
 7. If the input is something other than a greeting, symptom, or disease, reply: "Sorry, I don't understand." """
-        prompt = f"{system_instruction} User: {user_message}\nAI:"  # Basic chat formatting
+
+        prompt = f"""{system_instruction}\n\nChat History:\n{format_chat_history(chat_history)}\nUser: {user_message}"""
+
         response = model.generate_content([prompt])
-        return jsonify({"bot_reply": response.text})
+
+        bot_reply = response.text.strip()
+
+        chat_history.append({"sender": "user", "text": user_message})
+        chat_history.append({"sender": "bot", "text": bot_reply})
+        chat_histories[user_id] = chat_history  # Update the history
+
+        return jsonify({'bot_reply': bot_reply})  # Return valid JSON
+
     except Exception as e:
-        logging.exception("Error in chatbot")
-        return jsonify({"error": str(e)}), 500
+        logging.exception("An error occurred:")  # Log the full traceback
+        return jsonify({'error': str(e)}), 500  # Return JSON error
+
+
+def format_chat_history(history):
+    formatted = ""
+    for message in history:
+        formatted += f"{message['sender'].capitalize()}: {message['text']}\n"
+    return formatted
 
 
 if __name__ == "__main__":

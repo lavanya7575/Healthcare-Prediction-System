@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from 'react-router-dom';
-
+import '../styles/Navbar.css';
 const Navbar = () => {
     const navigate = useNavigate();
 
@@ -14,58 +14,24 @@ const Navbar = () => {
     };
 
     return (
-        <nav style={styles.navbar}>
-            <div style={styles.left}>
-                <Link to="/" style={styles.link}>Home</Link>
+        <nav className="navbar">
+            <div >
+                <Link to="/">Home</Link>
                 {/* Add more links here later */}
             </div>
-            <div style={styles.right}>
+            <div >
                 {isLoggedIn ? (
                     <>
-                        <Link to="/profile" style={styles.link}>Profile</Link>
-                        <button onClick={handleLogout} style={styles.button}>Logout</button>
+                        <Link to="/profile" >Profile</Link>
+                        <button onClick={handleLogout} >Logout</button>
                     </>
                 ) : (
-                    <Link to="/login" style={styles.link}>Login</Link>
+                    <Link to="/login" >Login</Link>
                 )}
             </div>
         </nav>
     );
 };
 
-// Styles
-const styles = {
-
-
-    navbar: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '10px 20px',
-        backgroundColor: '#333',
-        color: '#fff',
-    },
-    left: {
-        display: 'flex',
-        gap: '20px',
-    },
-    right: {
-        display: 'flex',
-        gap: '20px',
-        alignItems: 'center',
-    },
-    link: {
-        color: '#fff',
-        textDecoration: 'none',
-        fontSize: '16px',
-    },
-    button: {
-        backgroundColor: 'transparent',
-        border: 'none',
-        color: '#fff',
-        cursor: 'pointer',
-        fontSize: '16px',
-    },
-};
 
 export default Navbar;

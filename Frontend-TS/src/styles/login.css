@@ -1,0 +1,207 @@
+/* Cyberpunk Login Styles */
+
+
+.auth {
+    margin: 0;
+    min-height: 10vh;
+    align-items: center;
+    justify-content: center;
+  }
+.auth-container {
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+    padding: 2rem;
+    background: rgba(10, 10, 35, 0.8);
+    border: 2px solid #00f2fe;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
+    backdrop-filter: blur(5px);
+    animation: glow 3s infinite alternate;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .auth-container h1 {
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+  
+  .auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: transparent;
+    border: 2px solid #00ffcc;
+    border-radius: 5px;
+    color: #00ffcc;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s;
+  }
+  
+  .auth-container input::placeholder {
+    color: #00ffcc;
+    opacity: 0.7;
+  }
+  
+  .auth-container input:focus {
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+  }
+  
+  .auth-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 1rem;
+    background: transparent;
+    border: 2px solid #00f2fe;
+    border-radius: 5px;
+    color: #00f2fe;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .auth-container button:hover {
+    background: #00f2fe;
+    color: #0a0a23;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
+  }
+  
+  .auth-container p {
+    margin-top: 1.5rem;
+    color: #cfcfcf;
+  }
+  
+  .auth-container a {
+    color: #00f2fe;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(0, 242, 254, 0.7);
+  }
+  
+  .auth-container a:hover {
+    text-shadow: 0 0 10px rgba(0, 242, 254, 1);
+  }
+  
+  /* Glow animation */
+  @keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
+    100% { box-shadow: 0 0 40px rgba(0, 242, 254, 0.9); }
+  }
+
+
+  
+  
+/* Hero section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding-top: 4rem;
+    overflow: hidden; /* Prevent icons from overflowing */
+    background: linear-gradient(135deg, #0a0a23, #1a1a40); /* Dark blue gradient */
+
+  }
+  /* Sparkles */
+  .sparkles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.5; /* Subtle sparkles */
+    animation: moveSparkles 30s linear infinite;
+   
+  }
+  
+  @keyframes moveSparkles {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+  }
+  /* Background icons */
+  .background-icons .icon {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.8; /* Increase opacity for better visibility */
+    animation: float 12s ease-in-out infinite; /* Slower and smoother animation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px; /* Size of the circle */
+    height: 80px; /* Size of the circle */
+    background: rgba(255, 255, 255, 0.1); /* Transparent white background */
+    border: 2px solid rgba(0, 242, 254, 0.5); /* Neon blue border */
+    border-radius: 50%; /* Make it a circle */
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.5); /* Neon glow */
+    filter: blur(2px); /* Add blur effect to the entire icon */
+   
+  }
+  
+  /* Blur effect for the emoji inside the circle */
+  .background-icons .icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(4px); /* Add extra blur to the background */
+    z-index: -1; /* Place it behind the emoji */
+  }
+  
+  /* Individual icon positions and animations */
+  .icon1 {
+    top: 10%;
+    left: 5%;
+    animation: float 10s ease-in-out infinite; /* Custom animation for icon1 */
+  }
+  
+  .icon2 {
+    top: 30%;
+    right: 5%;
+    animation: float 14s ease-in-out infinite; /* Custom animation for icon2 */
+  }
+  
+  .icon4 {
+    bottom: 30%;
+    left: 55%;
+    animation: float 12s ease-in-out infinite; /* Custom animation for icon3 */
+  }
+  .icon3 {
+    bottom: 10%;
+    left: 15%;
+    animation: float 12s ease-in-out infinite; /* Custom animation for icon3 */
+  }
+  
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-50px) translateX(50px);
+    }
+    50% {
+      transform: translateY(50px) translateX(-50px);
+    }
+    75% {
+      transform: translateY(-50px) translateX(-50px);
+    }
+  }
+  
+
+  
+  
+  
+  
