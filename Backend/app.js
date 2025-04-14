@@ -8,7 +8,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var firebaseRouter = require('./routes/firebaseRouter');
-var dbRouter = require('./routes/dbRouter');
+//var dbRouter = require('./routes/dbRouter');
 
 /* routers */
 
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 app.use('/', indexRouter);
 app.use('/api/fireAuth', firebaseRouter);
-app.use('/api/user', dbRouter);
+//app.use('/api/user', dbRouter);
 
 /* routers */
 

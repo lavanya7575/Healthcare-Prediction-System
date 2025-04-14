@@ -3,6 +3,7 @@
 // @ts-expect-error
 import { signup } from '../api/auth.js';
 import {Link, useNavigate} from "react-router-dom";
+
 import { useState } from 'react';
 
 const Signup = () => {
@@ -32,6 +33,16 @@ const Signup = () => {
     };
 
     return (
+        <section className="hero">
+        <div className="sparkles"></div>
+  <div className="background-icons">
+    <div className="icon icon1">💊</div>
+    <div className="icon icon2">🩺</div>
+    <div className="icon icon3">❤️</div>
+    <div className="icon icon4">💉</div>
+  </div>
+
+        <div className="auth">
         <div className="auth-container">
             <h1>Sign Up</h1>
             <form onSubmit={handleSignup}>
@@ -55,6 +66,8 @@ const Signup = () => {
                 Don't have an account? <Link to="/login">Sign In</Link>
             </p>
         </div>
+        </div>
+    </section>
     );
 };
 

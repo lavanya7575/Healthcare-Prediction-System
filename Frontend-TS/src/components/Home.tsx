@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import "../styles/Home.css";
 
 const App = () => {
   const [symptoms, setSymptoms] = useState("");
@@ -85,14 +86,16 @@ const App = () => {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div >
+
+    <div className="app-container">
       {/* Left Side: Prediction */}
-      <div style={{ flex: 1, padding: "20px", borderRight: "1px solid #ccc" }}>
+      <div className="prediction-section">
         {/* Main Form */}
         <div>
-          <h1>Health Center!!!</h1>
-          <div>
-            <label>Select Symptoms:</label>
+          <h1>SmartCare</h1>
+          <div className="symptom-input">
+            <label>Select Symptoms:</label><br></br><br></br>
             <input
               type="text"
               list="symptoms"
@@ -108,27 +111,32 @@ const App = () => {
               ))}
             </datalist>
           </div>
-          <button
-            onClick={() => {
-              setSymptoms("");
-              setPrediction(null);
-            }}
-          >
-            Clear
-          </button>
-          <button onClick={handlePredict}>Predict</button>
+          <div className="group">
+            <button className="clear-button"
+              onClick={() => {
+                setSymptoms("");
+                setPrediction(null);
+              }}
+            >
+              Clear
+            </button>
+            <button className="predict-button"
+            onClick={handlePredict} >Predict</button>
+          </div>
         </div>
+
+        
 
         {/* Results */}
         {prediction && (
-          <div>
+          <div className="results-container">
             <h1>Results</h1>
-            <h1>
+            <h1 className="disease-name">
               Predicted Disease: <strong>{prediction.disease}</strong>
             </h1>
             <div>
               {/* Buttons on the left */}
-              <div>
+              <div className="detail-buttons">
                 <button onClick={() => setActiveDetail("description")}>
                   Description
                 </button>
@@ -145,7 +153,7 @@ const App = () => {
               </div>
 
               {/* Details on the right */}
-              <div>
+              <div className="detail-content">
                 {activeDetail === "description" && (
                   <p>
                     <strong>Description:</strong> {prediction.description}
@@ -178,30 +186,33 @@ const App = () => {
       </div>
 
       {/* Right Side: Chatbot */}
-      <div style={{ flex: 1, padding: "20px" }}>
-        <h1>Chatbot</h1>
-        <div >
+      <div className="chatbot-section">
+        <h1>Medibot</h1>
+        <div className="chat-messages">
           {messages.map((msg, index) => (
-            <div key={index} >
+            <div 
+              key={index} 
+              className={`message ${msg.sender === "user" ? "user-message" : "bot-message"}`}
+            >
               <p><strong>{msg.sender === "user" ? "You" : "Bot"}:</strong> {msg.text}</p>
             </div>
           ))}
-          {isLoading && <p><strong>Bot:</strong> Thinking...</p>}
+          {isLoading && <p className="loading-message"><strong>Bot:</strong> Thinking...</p>}
         </div>
-        <form onSubmit={handleChat} style={{ marginTop: "10px" }}>
+        <form onSubmit={handleChat} className="chat-form">
           <input
             type="text"
             value={chatMessage}
             onChange={(e) => setChatMessage(e.target.value)}
             placeholder="Type your message..."
             disabled={isLoading}
-            style={{ width: "80%", marginRight: "10px" }}
           />
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send"}
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

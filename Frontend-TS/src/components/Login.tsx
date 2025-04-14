@@ -3,6 +3,7 @@
 import { login } from '../api/auth.js';
 import {Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
+import '../styles/login.css';
 
 
 const Login = () => {
@@ -28,6 +29,15 @@ const Login = () => {
     };
 
     return (
+        <section className="hero">
+        <div className="sparkles"></div>
+  <div className="background-icons">
+    <div className="icon icon1">💊</div>
+    <div className="icon icon2">🩺</div>
+    <div className="icon icon3">❤️</div>
+    <div className="icon icon4">💉</div>
+  </div>
+        <div className='auth'>
         <div className="auth-container">
             <h1>Sign In</h1>
             <form onSubmit={handleLogin}>
@@ -51,6 +61,8 @@ const Login = () => {
                 Already have an account? <Link to="/signup">Sign Up</Link>
             </p>
         </div>
+        </div>
+        </section>
     );
 };
 

@@ -1,48 +1,97 @@
-/* Navbar Styles */
+/* Navbar styles */
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100vw; /* Ensures full viewport width */
+  left: 0;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #00f2fe; /* Neon border */
+  box-shadow: 0 0 40px rgba(0, 242, 254, 0.6); /* Neon glow */
+  background: rgba(10, 10, 35, 0.7);
+}
+
+  
+  /* Logo */
+  .logo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
-    background: linear-gradient(135deg, #FFB347, #FFDAB9); /* Light orange gradient */
-    color: #5A4033; /* Darker brown for contrast */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-bottom: 2px solid #E67300; /* Orange accent */
-}
-
-/* Left and Right Sections */
-.navbar-left, .navbar-right {
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00f2fe;
+    text-shadow: 0 0 10px #44b8be, 0 0 20px #66c0c0;
+  }
+  
+  .logo-circle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    border-radius: 50%;
     display: flex;
-    gap: 20px;
+    justify-content: center;
     align-items: center;
-}
-
-/* Navbar Links */
-.navbar a {
-    color: #5A4033; /* Dark brown for contrast */
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.navbar a:hover {
-    color: #E67300; /* Dark orange for hover effect */
-}
-
-/* Logout Button */
-.navbar button {
-    background-color: transparent;
-    border: 2px solid #E67300;
-    color: #E67300;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.navbar button:hover {
-    background: #E67300;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.8);
+  }
+  
+  .heart-icon {
     color: #fff;
-}
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+  }
+  
+  /* Navbar links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 4rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    position: relative;
+    right: 50%;
+    padding: 0.3rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #cfcfcf;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .nav-links li::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.4s ease;
+  }
+  
+  /* Hover effect */
+  .nav-links li:hover::after {
+    width: 100%;
+  }
+  
+  .nav-links li:hover {
+    color: #00f2fe;
+    text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe;
+  }
+  
+  /* Heart animation */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
